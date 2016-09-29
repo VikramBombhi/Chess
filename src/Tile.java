@@ -22,4 +22,8 @@ public class Tile {
     public void setPiece(Piece piece) {
         this.piece = piece;
     }
+
+    public void move(int y, int x){
+        piece.moveTo(y, x);
+    }
 }

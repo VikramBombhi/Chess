@@ -10,7 +10,7 @@ public class Knight extends Piece {
         this.team = team;
     }
 
-    public void moveTo(int x, int y){
+    public void moveTo(int y, int x){
         this.location.setLocation(y, x);
     }
 

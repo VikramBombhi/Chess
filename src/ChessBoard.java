@@ -10,8 +10,6 @@ public class ChessBoard {
                 board[x][y] = new Tile();
             }
         }
-
-        board[0][1].setPiece(new Knight("black", 0, 1));
     }
 
     public Object pieceAt(int x, int y){
@@ -23,6 +21,12 @@ public class ChessBoard {
     }
 
     public void removePiece(int y, int x){
+        board[y][x].setPiece();
+    }
+
+    public void movePiece(int y, int x, int newY, int newX){
+        board[y][x].move(y, x);
+        board[newY][newX] = board[y][x];
         board[y][x].setPiece();
     }
 }
