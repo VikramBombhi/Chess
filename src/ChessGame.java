@@ -8,6 +8,10 @@ public class ChessGame {
         chessBoard = new ChessBoard();
     }
 
+    public ChessBoard getChessBoard(){
+        return chessBoard;
+    }
+
     public void movePiece(int y, int x, int newY, int newX){
         chessBoard.movePiece(y, x, newY, newX);
     }

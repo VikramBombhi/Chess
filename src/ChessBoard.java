@@ -5,11 +5,15 @@ public class ChessBoard {
     private Tile board[][] = new Tile[8][8];
 
     public ChessBoard(){
-        for(int x = 0; x<8; x++){
-            for(int y = 0; y<8; y++){
-                board[x][y] = new Tile();
+        for(int y = 0; y<8; y++){
+            for(int x = 0; x<8; x++){
+                board[y][x] = new Tile();
             }
         }
+    }
+
+    public Tile[][] getBoard(){
+        return board;
     }
 
     public Object pieceAt(int x, int y){

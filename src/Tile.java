@@ -26,4 +26,14 @@ public class Tile {
     public void move(int y, int x){
         piece.moveTo(y, x);
     }
+
+    @Override
+    public String toString(){
+        if(piece == null){
+            return "-";
+        }
+        else{
+            return "k";
+        }
+    }
 }
