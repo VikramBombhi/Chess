@@ -6,6 +6,7 @@ public class ChessGame {
 
     public ChessGame(){
         chessBoard = new ChessBoard();
+        createKnight("BLACK", 1, 1);
     }
 
     public ChessBoard getChessBoard(){

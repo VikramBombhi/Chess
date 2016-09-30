@@ -25,16 +25,16 @@ public class PlayGame {
             printBoard();
             System.out.print("\n");
             System.out.print("Select piece to move ex(0,3) or quit ex(q): ");
-            String piecelocation = userInput.nextLine();
+            String pieceLocation = userInput.nextLine();
 
-            if(piecelocation.equals("q")){
+            if(pieceLocation.equals("q")){
                 break;
             }
 
             System.out.print("Enter where you want to move ex.(0,1): ");
             String moveLocation = userInput.nextLine();
 
-            String[] pieceLocationSplit = piecelocation.split("\\s*,\\s*");
+            String[] pieceLocationSplit = pieceLocation.split("\\s*,\\s*");
             int pieceLocationY = Integer.parseInt(pieceLocationSplit[0]);
             int pieceLocationX = Integer.parseInt(pieceLocationSplit[1]);
             String[] moveLocationSplit = moveLocation.split("\\s*,\\s*");

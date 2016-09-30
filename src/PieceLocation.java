@@ -4,21 +4,21 @@
 public class PieceLocation {
     private int x, y;
 
-    public PieceLocation(int y, int x){
-        this.y = y;
-        this.x = x;
+    public PieceLocation(int newY, int newX){
+        y = newY;
+        x = newX;
     }
 
-    public void setLocation(int y, int x){
-        this.y = y;
-        this.x = x;
+    public void setLocation(int newY, int newX){
+        y = newY;
+        x = newX;
     }
 
     public int getY(){
-        return this.y;
+        return y;
     }
 
     public int getX(){
-        return this.x;
+        return x;
     }
 }

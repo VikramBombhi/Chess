@@ -3,22 +3,22 @@
  */
 public class Knight extends Piece {
     private PieceLocation location;
-    private String team;
+    private String owner;
 
     public Knight(String team, int y, int x){
-        this.location.setLocation(y, x);
-        this.team = team;
+        owner = team;
+        location = new PieceLocation(y, x);
     }
 
     public void moveTo(int y, int x){
-        this.location.setLocation(y, x);
+        location.setLocation(y, x);
     }
 
     public int getY(){
-        return this.location.getY();
+        return location.getY();
     }
 
     public int getX(){
-        return this.location.getX();
+        return location.getX();
     }
 }
