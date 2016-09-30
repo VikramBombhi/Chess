@@ -13,11 +13,11 @@ public class ChessGame {
         return chessBoard;
     }
 
-    public void movePiece(int y, int x, int newY, int newX){
-        chessBoard.movePiece(y, x, newY, newX);
+    public void movePiece(int row, int col, int newY, int newX){
+        chessBoard.movePiece(row, col, newY, newX);
     }
 
-    public void createKnight(String team, int y, int x){
-        chessBoard.addPiece(new Knight(team, y, x), y, x);
+    public void createKnight(String team, int row, int col){
+        chessBoard.addPiece(new Knight(team, row, col), row, col);
     }
 }

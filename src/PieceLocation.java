@@ -2,23 +2,23 @@
  * Created by Vikram on 2016-09-29.
  */
 public class PieceLocation {
-    private int x, y;
+    private int row, col;
 
-    public PieceLocation(int newY, int newX){
-        y = newY;
-        x = newX;
+    public PieceLocation(int newRow, int newCol){
+        row = newRow;
+        col = newCol;
     }
 
-    public void setLocation(int newY, int newX){
-        y = newY;
-        x = newX;
+    public void setLocation(int newRow, int newCol){
+        row = newRow;
+        col = newCol;
     }
 
-    public int getY(){
-        return y;
+    public int getRow(){
+        return row;
     }
 
-    public int getX(){
-        return x;
+    public int getCol(){
+        return col;
     }
 }

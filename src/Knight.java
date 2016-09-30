@@ -4,21 +4,22 @@
 public class Knight extends Piece {
     private PieceLocation location;
     private String owner;
+    private ChessGame game;
 
     public Knight(String team, int y, int x){
         owner = team;
         location = new PieceLocation(y, x);
     }
 
-    public void moveTo(int y, int x){
-        location.setLocation(y, x);
+    public void moveTo(int row, int col){
+        location.setLocation(row, col);
     }
 
-    public int getY(){
-        return location.getY();
+    public int getRow(){
+        return location.getRow();
     }
 
-    public int getX(){
-        return location.getX();
+    public int getCol(){
+        return location.getCol();
     }
 }

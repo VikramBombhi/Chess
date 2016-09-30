@@ -1,7 +1,6 @@
 /**
  * Created by Vikram on 2016-09-29.
  */
-import java.lang.reflect.Array;
 import java.util.Scanner;
 
 public class PlayGame {
@@ -12,11 +11,14 @@ public class PlayGame {
         for(int y = 0; y<8; y++){
             System.out.print("\n");
             for(int x = 0; x<8; x++){
-                System.out.print(game.getChessBoard().getBoard()[y][x]);//print the piece
+                System.out.print(game.getChessBoard().getTiles()[y][x]);//print the piece
             }
         }
     }
 
+    public ChessGame getGame(){
+        return game;
+    }
 
     public static void main(String args[]){
         game = new ChessGame();
