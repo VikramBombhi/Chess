@@ -23,26 +23,27 @@ public class PlayGame {
         while(true){
             printBoard();
             System.out.print("\n");
-            System.out.print("Select piece to move ex(0,3) or quit ex(q): ");
-            String pieceLocation = userInput.nextLine();
 
+            //ask user for piece to move
+            System.out.print("Select piece to move ex(row,col) or quit ex(q): ");
+            String pieceLocation = userInput.nextLine();
+            //quit game if user enters q
             if(pieceLocation.equals("q")){
                 break;
             }
-
+            //split coordinates by comma and remove any spaces
             String[] pieceLocationSplit = pieceLocation.split("\\s*,\\s*");
             int pieceLocationRow = Integer.parseInt(pieceLocationSplit[0]);
             int pieceLocationCol = Integer.parseInt(pieceLocationSplit[1]);
             PieceLocation currentLocation = new PieceLocation(pieceLocationRow, pieceLocationCol);
-
-            System.out.print("Enter where you want to move ex.(0,1): ");
+            //ask user where to move piece
+            System.out.print("Enter where you want to move ex.(row,col): ");
             String moveLocation = userInput.nextLine();
-
             String[] moveLocationSplit = moveLocation.split("\\s*,\\s*");
             int moveLocationRow = Integer.parseInt(moveLocationSplit[0]);
             int moveLocationCol = Integer.parseInt(moveLocationSplit[1]);
             PieceLocation newLocation = new PieceLocation(moveLocationRow, moveLocationCol);
-
+            //move piece
             game.movePiece(currentLocation, newLocation);
         }
     }
