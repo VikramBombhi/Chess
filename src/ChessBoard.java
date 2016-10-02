@@ -25,17 +25,17 @@ public class ChessBoard {
         }
     }
 
-    public void addPiece(Piece piece, int row, int col){
-        tiles[row][col].setPiece(piece);
+    public void addPiece(Piece piece){
+        tiles[piece.getRow()][piece.getCol()].setPiece(piece);
     }
 
     public void removePiece(int row, int col){
         tiles[row][col].setPiece();
     }
 
-    public void movePiece(int row, int col, int newRow, int newCol){
-        tiles[newRow][newCol].setPiece(tiles[row][col].getPiece());
-        tiles[newRow][newCol].move(newRow, newCol);
-        removePiece(row, col);
+    public void movePiece(PieceLocation location, PieceLocation newLocation){
+        tiles[newLocation.getRow()][newLocation.getCol()].setPiece(tiles[location.getRow()][location.getCol()].getPiece());
+        tiles[newLocation.getRow()][newLocation.getCol()].move(newLocation);
+        removePiece(location.getRow(), location.getCol());
     }
 }

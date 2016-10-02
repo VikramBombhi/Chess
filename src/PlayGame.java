@@ -4,7 +4,7 @@
 import java.util.Scanner;
 
 public class PlayGame {
-    public static Scanner userInput = new Scanner(System.in);
+    private static Scanner userInput = new Scanner(System.in);
     public static ChessGame game;
 
     public static void printBoard(){
@@ -14,10 +14,6 @@ public class PlayGame {
                 System.out.print(game.getChessBoard().getTiles()[y][x]);//print the piece
             }
         }
-    }
-
-    public ChessGame getGame(){
-        return game;
     }
 
     public static void main(String args[]){
@@ -37,12 +33,12 @@ public class PlayGame {
             String moveLocation = userInput.nextLine();
 
             String[] pieceLocationSplit = pieceLocation.split("\\s*,\\s*");
-            int pieceLocationY = Integer.parseInt(pieceLocationSplit[0]);
-            int pieceLocationX = Integer.parseInt(pieceLocationSplit[1]);
+            int pieceLocationRow = Integer.parseInt(pieceLocationSplit[0]);
+            int pieceLocationCol = Integer.parseInt(pieceLocationSplit[1]);
             String[] moveLocationSplit = moveLocation.split("\\s*,\\s*");
-            int moveLocationY = Integer.parseInt(moveLocationSplit[0]);
-            int moveLocationX = Integer.parseInt(moveLocationSplit[1]);
-            game.movePiece(pieceLocationY, pieceLocationX, moveLocationY, moveLocationX);
+            int moveLocationRow = Integer.parseInt(moveLocationSplit[0]);
+            int moveLocationCol = Integer.parseInt(moveLocationSplit[1]);
+            game.movePiece(new PieceLocation(pieceLocationRow, pieceLocationCol), new PieceLocation(moveLocationRow, moveLocationCol));
         }
     }
 }

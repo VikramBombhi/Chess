@@ -9,9 +9,9 @@ public class PieceLocation {
         col = newCol;
     }
 
-    public void setLocation(int newRow, int newCol){
-        row = newRow;
-        col = newCol;
+    public void setLocation(PieceLocation location){
+        row = location.getRow();
+        col = location.getCol();
     }
 
     public int getRow(){

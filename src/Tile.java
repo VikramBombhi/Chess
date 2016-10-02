@@ -23,8 +23,8 @@ public class Tile {
         this.piece = piece;
     }
 
-    public void move(int row, int col){
-        piece.moveTo(row, col);
+    public void move(PieceLocation location){
+        piece.moveTo(location);
     }
 
     @Override

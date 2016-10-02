@@ -6,13 +6,14 @@ public class Knight extends Piece {
     private String owner;
     private ChessGame game;
 
-    public Knight(String team, int y, int x){
-        owner = team;
-        location = new PieceLocation(y, x);
+    public Knight(String team, PieceLocation initLocation, ChessGame game){
+        this.owner = team;
+        this.location = initLocation;
+        this.game = game;
     }
 
-    public void moveTo(int row, int col){
-        location.setLocation(row, col);
+    public void moveTo(PieceLocation location){
+        location.setLocation(location);
     }
 
     public int getRow(){

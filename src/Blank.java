@@ -5,7 +5,7 @@ public class Blank {
     private PieceLocation location;
     private Piece piece;
 
-    public Blank(int x, int y){
-        this.location.setLocation(x, y);
+    public Blank(PieceLocation location){
+        this.location.setLocation(location);
     }
 }
