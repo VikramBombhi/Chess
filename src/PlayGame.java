@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class PlayGame {
     private static Scanner userInput = new Scanner(System.in);
     public static ChessGame game;
+    public ChessBoard board;
 
     public static void printBoard(){
         for(int y = 0; y<8; y++){
@@ -18,7 +19,7 @@ public class PlayGame {
 
     public static void main(String args[]){
         game = new ChessGame();
-
+        ChessBoard board = game.getChessBoard();
         while(true){
             printBoard();
             System.out.print("\n");
@@ -29,16 +30,20 @@ public class PlayGame {
                 break;
             }
 
-            System.out.print("Enter where you want to move ex.(0,1): ");
-            String moveLocation = userInput.nextLine();
-
             String[] pieceLocationSplit = pieceLocation.split("\\s*,\\s*");
             int pieceLocationRow = Integer.parseInt(pieceLocationSplit[0]);
             int pieceLocationCol = Integer.parseInt(pieceLocationSplit[1]);
+            PieceLocation currentLocation = new PieceLocation(pieceLocationRow, pieceLocationCol);
+
+            System.out.print("Enter where you want to move ex.(0,1): ");
+            String moveLocation = userInput.nextLine();
+
             String[] moveLocationSplit = moveLocation.split("\\s*,\\s*");
             int moveLocationRow = Integer.parseInt(moveLocationSplit[0]);
             int moveLocationCol = Integer.parseInt(moveLocationSplit[1]);
-            game.movePiece(new PieceLocation(pieceLocationRow, pieceLocationCol), new PieceLocation(moveLocationRow, moveLocationCol));
+            PieceLocation newLocation = new PieceLocation(moveLocationRow, moveLocationCol);
+
+            game.movePiece(currentLocation, newLocation);
         }
     }
 }
