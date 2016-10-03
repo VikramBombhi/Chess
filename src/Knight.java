@@ -12,6 +12,17 @@ public class Knight extends Piece {
         this.game = game;
     }
 
+    public boolean canMoveTo(PieceLocation newLocation){
+        int y = newLocation.getRow();
+        int x = newLocation.getCol();
+        if(y > 7 || x > 7){
+            return false;
+        }
+        y -= this.location.getRow();
+        x -= this.location.getCol();
+        return(y == 2 && x ==1 || x == 2 && y==1);
+    }
+
     public void moveTo(PieceLocation location){
         location.setLocation(location);
     }

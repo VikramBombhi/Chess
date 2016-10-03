@@ -16,8 +16,12 @@ public class ChessBoard {
         return tiles;
     }
 
-    public boolean isPieceAt(int row, int col){
-        if(tiles[row][col].getPiece() == null){
+    public boolean canMoveTo(PieceLocation location, PieceLocation newLocation){
+        return tiles[location.getRow()][location.getCol()].getPiece().canMoveTo(newLocation);
+    }
+
+    public boolean isPieceAt(PieceLocation location){
+        if(tiles[location.getRow()][location.getCol()].getPiece() == null){
             return false;
         }
         else{
