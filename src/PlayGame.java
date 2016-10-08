@@ -8,18 +8,6 @@ public class PlayGame {
     private static Scanner userInput = new Scanner(System.in);
     public static ChessGame game;
 
-    //This method prints the ChessBoard
-    private static void printBoard(){
-        System.out.println("  0 1 2 3 4 5 6 7");
-        for(int row = 0; row<8; row++){
-            System.out.print(row);
-            for(int col = 0; col<8; col++){
-                System.out.print(game.getChessBoard().getTiles()[row][col]);//print the piece
-            }
-            System.out.println();
-        }
-    }
-
     //This method takes the users input and converts it into a PieceLocation obj
     private static PieceLocation parseCoordinates(String input){
         //split coordinates by comma and remove any spaces
@@ -34,7 +22,7 @@ public class PlayGame {
         ChessBoard board = game.getChessBoard();
         //continue loop until user quits game
         while(true){
-            printBoard();
+            board.printBoard();
             System.out.print("\n");
 
             //ask user for piece to move

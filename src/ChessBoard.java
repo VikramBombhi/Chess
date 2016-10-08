@@ -49,4 +49,16 @@ public class ChessBoard {
         tiles[newLocation.getRow()][newLocation.getCol()].getPiece().moveTo(newLocation);
         tiles[location.getRow()][location.getCol()].removePiece();
     }
+
+    //This method prints the ChessBoard
+    public void printBoard(){
+        System.out.println("  0 1 2 3 4 5 6 7");
+        for(int row = 0; row<8; row++){
+            System.out.print(row);
+            for(int col = 0; col<8; col++){
+                System.out.print(tiles[row][col]);//print the piece
+            }
+            System.out.println();
+        }
+    }
 }
