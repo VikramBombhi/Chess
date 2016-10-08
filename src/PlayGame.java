@@ -10,11 +10,13 @@ public class PlayGame {
 
     //This method prints the ChessBoard
     private static void printBoard(){
-        for(int y = 0; y<8; y++){
-            System.out.print("\n");
-            for(int x = 0; x<8; x++){
-                System.out.print(game.getChessBoard().getTiles()[y][x]);//print the piece
+        System.out.println("  0 1 2 3 4 5 6 7");
+        for(int row = 0; row<8; row++){
+            System.out.print(row);
+            for(int col = 0; col<8; col++){
+                System.out.print(game.getChessBoard().getTiles()[row][col]);//print the piece
             }
+            System.out.println();
         }
     }
 

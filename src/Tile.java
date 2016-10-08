@@ -25,10 +25,10 @@ public class Tile {
     @Override
     public String toString(){
         if(piece == null){
-            return "-";
+            return " -";
         }
         else{
-            return "k";
+            return " k";
         }
     }
 }
