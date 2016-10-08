@@ -10,18 +10,22 @@ public class Tile {
         this.piece = null;
     }
 
+    //returns the piece that exists inside this tile
     public Piece getPiece() {
         return piece;
     }
 
+    //sets piece inside tile to given piece
     public void setPiece(Piece piece) {
         this.piece = piece;
     }
 
+    //removes piece from tile by setting tile to null
     public void removePiece(){
         this.piece = null;
     }
 
+    //prints " k" if tile contains knight and " -" if it has no piece
     @Override
     public String toString(){
         if(piece == null){

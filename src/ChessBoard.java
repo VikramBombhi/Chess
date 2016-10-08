@@ -1,5 +1,6 @@
 /**
  * Created by Vikram on 2016-09-28.
+ * ChessBoard class contains a 2D array representing the chessboard
  */
 public class ChessBoard {
     //Initialize a 2D array containing a Tile obj
@@ -14,28 +15,19 @@ public class ChessBoard {
         }
     }
 
+    //returns the 2D array containing Tiles
     public Tile[][] getTiles(){
         return tiles;
     }
 
-    //Check if a a piece at location can move to newLocation using the canMoveTo method from the Piece
-    public boolean canMoveTo(PieceLocation location, PieceLocation newLocation){
-        return tiles[location.getRow()][location.getCol()].getPiece().canMoveTo(newLocation);
-    }
-
     //Check if Piece at location is null or not
     public boolean isPieceAt(PieceLocation location){
-        if(tiles[location.getRow()][location.getCol()].getPiece() == null){
-            return false;
-        }
-        else{
-            return true;
-        }
+        return !(tiles[location.getRow()][location.getCol()].getPiece() == null);
     }
 
     //Place piece using setPiece method from the Tile class
-    public void addPiece(Piece piece){
-        tiles[piece.getRow()][piece.getCol()].setPiece(piece);
+    public void placePieceAt(Piece piece){
+        tiles[piece.getLocation().getRow()][piece.getLocation().getCol()].setPiece(piece);
     }
 
     /*
@@ -46,11 +38,11 @@ public class ChessBoard {
     */
     public void movePiece(PieceLocation location, PieceLocation newLocation){
         tiles[newLocation.getRow()][newLocation.getCol()].setPiece(tiles[location.getRow()][location.getCol()].getPiece());
-        tiles[newLocation.getRow()][newLocation.getCol()].getPiece().moveTo(newLocation);
+        tiles[newLocation.getRow()][newLocation.getCol()].getPiece().getLocation().setLocation(newLocation);
         tiles[location.getRow()][location.getCol()].removePiece();
     }
 
-    //This method prints the ChessBoard
+    //This method prints the ChessBoard including the row and col numbers
     public void printBoard(){
         System.out.println("  0 1 2 3 4 5 6 7");
         for(int row = 0; row<8; row++){

@@ -3,8 +3,8 @@
  * This is a abstract class extended by the Knight class
  */
 public abstract class Piece {
+    abstract PieceLocation getLocation();
+    abstract String getOwner();
+    abstract ChessGame getGame();
     abstract boolean canMoveTo(PieceLocation newLocation);
-    abstract void moveTo(PieceLocation location);
-    abstract int getRow();
-    abstract int getCol();
 }

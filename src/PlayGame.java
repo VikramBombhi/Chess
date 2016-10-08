@@ -1,4 +1,4 @@
-/**
+/*
  * Created by Vikram on 2016-09-29.
  * The PlayGame class implements the main method.
  */
@@ -19,10 +19,9 @@ public class PlayGame {
 
     public static void main(String args[]){
         game = new ChessGame();
-        ChessBoard board = game.getChessBoard();
         //continue loop until user quits game
         while(true){
-            board.printBoard();
+            game.getChessBoard().printBoard();
             System.out.print("\n");
 
             //ask user for piece to move
@@ -32,23 +31,25 @@ public class PlayGame {
             if(pieceLocation.equals("quit")){
                 break;
             }
+            //@param currentLocation is the location of the piece that the user wants to move
             PieceLocation currentLocation = parseCoordinates(pieceLocation);
-            if(board.isPieceAt(currentLocation)){
+            //Check if a piece exists at currentLocation
+            if(game.getChessBoard().isPieceAt(currentLocation)){
                 //ask user where to move piece
                 System.out.print("Enter where you want to move ex.(row,col): ");
                 String moveLocation = userInput.nextLine();
                 PieceLocation newLocation = parseCoordinates(moveLocation);
                 //Check if piece can move there
-                if(board.canMoveTo(currentLocation, newLocation)){
+                if(game.getChessBoard().getTiles()[currentLocation.getRow()][currentLocation.getCol()].getPiece().canMoveTo(newLocation)) {
                     //move piece
-                    game.movePiece(currentLocation, newLocation);
+                    game.getChessBoard().movePiece(currentLocation, newLocation);
                 }
                 //Print if users tries moving to out of bounds position
                 else{
-                    System.out.print("You canot move there");
+                    System.out.print("You cannot move there");
                 }
             }
-            //Print if user fails at selecting a piece
+            //Print if user fails at selecting a piece that exists
             else {
                 System.out.print("There is no piece there, the format for selecting a piece is (row, col) ex(0,1)");
             }

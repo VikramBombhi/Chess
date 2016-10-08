@@ -1,6 +1,8 @@
 /**
  * Created by Vikram on 2016-09-28.
+ * This class extends the piece class
  */
+
 public class Knight extends Piece {
     private PieceLocation location;
     private String owner;
@@ -12,26 +14,33 @@ public class Knight extends Piece {
         this.game = game;
     }
 
+    //returns location of knight
+    public PieceLocation getLocation(){
+        return location;
+    }
+
+    //returns string owner of knight
+    public String getOwner(){
+        return owner;
+    }
+
+    //returns game that knight belongs to
+    public ChessGame getGame(){
+        return game;
+    }
+
+    //checks if knight can move to newLocation
     public boolean canMoveTo(PieceLocation newLocation){
-        int y = newLocation.getRow();
-        int x = newLocation.getCol();
-        if(y > 7 || x > 7){
+        int newRow = newLocation.getRow();
+        int newCol = newLocation.getCol();
+        //checking if newLocation is on the board
+        if(newRow > 7 || newCol > 7){
             return false;
         }
-        y -= this.location.getRow();
-        x -= this.location.getCol();
-        return(y == 2 && x ==1 || x == 2 && y==1);
-    }
-
-    public void moveTo(PieceLocation location){
-        location.setLocation(location);
-    }
-
-    public int getRow(){
-        return location.getRow();
-    }
-
-    public int getCol(){
-        return location.getCol();
+        //sets newRow and newCol to the difference between newLocation and current location of knight
+        newRow -= this.location.getRow();
+        newCol -= this.location.getCol();
+        //returns true if either newRow or newCol changes by two and the other by one(hence moves in a 'L')
+        return(Math.abs(newRow) == 2 && Math.abs(newCol) == 1 || Math.abs(newCol) == 2 && Math.abs(newRow) == 1);
     }
 }
