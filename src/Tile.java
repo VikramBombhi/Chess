@@ -1,30 +1,25 @@
 /**
  * Created by Vikram on 2016-09-29.
+ * Tiles exist at every location in the chessboard and contain Piece's
  */
 public class Tile {
     private Piece piece;
 
+    //All tiles contain no piece initially or in other words the board is clear
     public Tile(){
         this.piece = null;
-    }
-    public Tile(Piece piece){
-        this.piece = piece;
     }
 
     public Piece getPiece() {
         return piece;
     }
 
-    public void setPiece(){
-        this.piece = null;
-    }
-
     public void setPiece(Piece piece) {
         this.piece = piece;
     }
 
-    public void move(PieceLocation location){
-        piece.moveTo(location);
+    public void removePiece(){
+        this.piece = null;
     }
 
     @Override
