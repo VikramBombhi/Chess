@@ -3,8 +3,43 @@
  * This is a abstract class extended by the Knight class
  */
 public abstract class Piece {
-    abstract PieceLocation getLocation();
-    abstract String getOwner();
-    abstract ChessGame getGame();
+    private ChessGame game;
+    private String owner;
+    private PieceLocation location;
+
+    public ChessGame getGame(){
+        return game;
+    }
+
+    public String getOwner(){
+        return owner;
+    }
+
+    public PieceLocation getLocation(){
+        return location;
+    }
+
+    public void setGame(ChessGame game){
+        this.game = game;
+    }
+
+    public void setOwner(String owner){
+        this.owner = owner;
+    }
+
+    public void setLocation(PieceLocation location){
+        this.location = location;
+    }
+
+    //Checks if a piece is moving diagonally
+    public boolean canMoveDiagonally(PieceLocation location, PieceLocation newLocation){
+        return (location.getRow()-newLocation.getRow() == location.getCol()-newLocation.getCol());
+    }
+
+    //Checks if a piece is moving in a straight line
+    public boolean canMoveStraight(PieceLocation location, PieceLocation newLocation){
+        return (Math.abs(location.getRow()-newLocation.getRow()) == 0 || Math.abs(location.getCol()-newLocation.getCol()) == 0);
+    }
+
     abstract boolean canMoveTo(PieceLocation newLocation);
 }

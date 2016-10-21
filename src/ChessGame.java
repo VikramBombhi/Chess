@@ -15,6 +15,9 @@ public class ChessGame {
         //creating a single piece manually for now because only a single knight exists
         Knight knight = new Knight("Black", new PieceLocation(0,1), PlayGame.game);
         chessBoard.placePieceAt(knight);
+
+        Queen queen = new Queen("Black", new PieceLocation(1,1), PlayGame.game);
+        chessBoard.placePieceAt(queen);
     }
 
     //returns the ChessBoard
