@@ -3,6 +3,7 @@
  * This class is a template for the queen object
  */
 public class Queen extends Piece {
+
     public Queen(String owner, PieceLocation location, ChessGame game){
         this.setOwner(owner);
         this.setLocation(location);
