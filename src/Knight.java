@@ -25,4 +25,9 @@ public class Knight extends Piece {
         //returns true if either newRow or newCol changes by two and the other by one(hence moves in a 'L')
         return(Math.abs(newRow) == 2 && Math.abs(newCol) == 1 || Math.abs(newCol) == 2 && Math.abs(newRow) == 1);
     }
+
+    @Override
+    public String toString(){
+        return " " + "k";
+    }
 }

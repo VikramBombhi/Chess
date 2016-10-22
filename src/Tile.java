@@ -32,7 +32,8 @@ public class Tile {
             return " -";
         }
         else{
-            return " k";
+            //return " k";
+            return piece.toString();
         }
     }
 }
