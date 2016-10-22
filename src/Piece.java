@@ -33,12 +33,12 @@ public abstract class Piece {
 
     //Checks if a piece is moving diagonally
     public boolean canMoveDiagonally(PieceLocation location, PieceLocation newLocation){
-        return (location.getRow()-newLocation.getRow() == location.getCol()-newLocation.getCol());
+        return  location.getDifference(newLocation).getRow() == location.getDifference(newLocation).getCol();
     }
 
     //Checks if a piece is moving in a straight line
     public boolean canMoveStraight(PieceLocation location, PieceLocation newLocation){
-        return (Math.abs(location.getRow()-newLocation.getRow()) == 0 || Math.abs(location.getCol()-newLocation.getCol()) == 0);
+        return location.getDifference(newLocation).getRow() == 0 || location.getDifference(newLocation).getCol() ==0;
     }
 
     abstract boolean canMoveTo(PieceLocation newLocation);

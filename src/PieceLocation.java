@@ -25,4 +25,8 @@ public class PieceLocation {
     public int getCol(){
         return col;
     }
+
+    public PieceLocation getDifference(PieceLocation newLocation){
+        return (new PieceLocation(Math.abs(this.getRow()-newLocation.getRow()), Math.abs(this.getCol()-newLocation.getCol())));
+    }
 }
