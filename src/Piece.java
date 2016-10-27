@@ -33,13 +33,24 @@ public abstract class Piece {
 
     //Checks if a piece is moving diagonally
     public boolean canMoveDiagonally(PieceLocation location, PieceLocation newLocation){
-        return  location.getDifference(newLocation).getRow() == location.getDifference(newLocation).getCol();
+        return  Math.abs(location.getDifference(newLocation).getRow()) == Math.abs(location.getDifference(newLocation).getCol());
     }
 
     //Checks if a piece is moving in a straight line
     public boolean canMoveStraight(PieceLocation location, PieceLocation newLocation){
-        return location.getDifference(newLocation).getRow() == 0 || location.getDifference(newLocation).getCol() ==0;
+        return Math.abs(location.getDifference(newLocation).getRow()) == 0 || Math.abs(location.getDifference(newLocation).getCol()) == 0;
     }
+
+    //Checks if a piece is moving in a straight line within a range
+    public boolean canMoveDiagonally(PieceLocation location, PieceLocation newLocation, int range){
+        return  Math.abs(location.getDifference(newLocation).getRow()) == Math.abs(location.getDifference(newLocation).getCol()) && Math.abs(location.getDifference(newLocation).getRow()) == range ;
+    }
+
+    //Checks if a piece is moving diagonally within a range
+    public boolean canMoveStraight(PieceLocation location, PieceLocation newLocation, int range){
+        return (Math.abs(location.getDifference(newLocation).getRow()) == 0 && Math.abs(location.getDifference(newLocation).getCol()) == range)|| (Math.abs(location.getDifference(newLocation).getCol()) == 0 && Math.abs(location.getDifference(newLocation).getRow()) == range);
+    }
+
 
     abstract boolean canMoveTo(PieceLocation newLocation);
 }
