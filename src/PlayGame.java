@@ -46,12 +46,12 @@ public class PlayGame {
                 }
                 //Print if users tries moving to out of bounds position
                 else{
-                    System.out.print("You cannot move there");
+                    System.out.println("You cannot move there");
                 }
             }
             //Print if user fails at selecting a piece that exists
             else {
-                System.out.print("There is no piece there, the format for selecting a piece is (row, col) ex(0,1)");
+                System.out.println("There is no piece there, the format for selecting a piece is (row, col) ex(0,1)");
             }
         }
     }

@@ -38,6 +38,12 @@ public class ChessGame {
 
         bishop = new Bishop("Black", new PieceLocation(0, 5), PlayGame.game);
         chessBoard.placePieceAt(bishop);
+
+	//create&place pawns
+	for(int col = 0; col < 8; col++){
+		Pawn pawn = new Pawn("Black", new PieceLocation(1, col), PlayGame.game);
+		chessBoard.placePieceAt(pawn);
+	}
     }
 
     //returns the ChessBoard
