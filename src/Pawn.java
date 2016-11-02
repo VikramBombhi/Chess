@@ -3,10 +3,9 @@
  */
 public class Pawn extends Piece {
 
-    public Pawn(String owner, PieceLocation location, ChessGame game){
+    public Pawn(String owner, PieceLocation location){
         this.setOwner(owner);
         this.setLocation(location);
-        this.setGame(game);
     }
 
     public boolean canMoveTo(PieceLocation newLocation){

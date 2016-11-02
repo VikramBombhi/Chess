@@ -3,10 +3,9 @@
  */
 public class Bishop extends Piece {
 
-    public Bishop(String owner, PieceLocation location, ChessGame game){
+    public Bishop(String owner, PieceLocation location){
         this.setOwner(owner);
         this.setLocation(location);
-        this.setGame(game);
     }
 
     public boolean canMoveTo(PieceLocation newLocation){

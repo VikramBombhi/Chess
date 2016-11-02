@@ -4,10 +4,9 @@
  */
 public class Queen extends Piece {
 
-    public Queen(String owner, PieceLocation location, ChessGame game){
+    public Queen(String owner, PieceLocation location){
         this.setOwner(owner);
         this.setLocation(location);
-        this.setGame(game);
     }
 
     public boolean canMoveTo(PieceLocation newLocation){

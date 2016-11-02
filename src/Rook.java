@@ -4,10 +4,9 @@
  */
 public class Rook extends Piece {
 
-    public Rook(String owner, PieceLocation location, ChessGame game){
+    public Rook(String owner, PieceLocation location){
         this.setOwner(owner);
         this.setLocation(location);
-        this.setGame(game);
     }
 
     public boolean canMoveTo(PieceLocation newLocation){
