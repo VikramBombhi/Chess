@@ -27,14 +27,20 @@ public abstract class Piece {
     }
 
     //Checks if a piece is moving diagonally
-    public boolean canMoveDiagonally(PieceLocation location, PieceLocation newLocation){
-        return  Math.abs(location.getDifference(newLocation).getRow()) == Math.abs(location.getDifference(newLocation).getCol());
-    }
-
-    //Checks if a piece is moving in a straight line within a range and that another piece from your team is not there
     public boolean canMoveDiagonally(PieceLocation location, PieceLocation newLocation, int range){
         if(Math.abs(location.getDifference(newLocation).getRow()) == Math.abs(location.getDifference(newLocation).getCol()) && Math.abs(location.getDifference(newLocation).getRow()) == range){
-            return !PlayGame.game.getChessBoard().getTiles()[newLocation.getRow()][newLocation.getCol()].getPiece().getOwner().equals(owner);
+            int rowDiffSign = Integer.signum(location.getDifference(newLocation).getRow());
+            int colDiffSign = Integer.signum(location.getDifference(newLocation).getCol());
+            for(int row = location.getRow();row!=newLocation.getRow();row+=rowDiffSign){
+                for(int col = location.getCol();col!=newLocation.getCol();row+=colDiffSign){
+                    if(PlayGame.game.getChessBoard().getTiles()[row][col].getPiece() != this &&
+                            PlayGame.game.getChessBoard().getTiles()[row][col].getPiece().getOwner().equals(owner)){
+                        System.out.print("hit team member");
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
         else return false;
     }

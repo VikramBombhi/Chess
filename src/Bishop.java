@@ -9,7 +9,7 @@ public class Bishop extends Piece {
     }
 
     public boolean canMoveTo(PieceLocation newLocation){
-        return super.canMoveDiagonally(this.getLocation(), newLocation);
+        return super.canMoveDiagonally(this.getLocation(), newLocation, this.getLocation().getDifference(newLocation).getRow());
     }
 
     @Override

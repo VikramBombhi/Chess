@@ -10,7 +10,8 @@ public class Queen extends Piece {
     }
 
     public boolean canMoveTo(PieceLocation newLocation){
-        return (super.canMoveDiagonally(this.getLocation(), newLocation) || super.canMoveStraight(this.getLocation(), newLocation));
+        return (super.canMoveDiagonally(this.getLocation(), newLocation, this.getLocation().getDifference(newLocation).getRow())
+                || super.canMoveStraight(this.getLocation(), newLocation));
     }
 
     @Override
