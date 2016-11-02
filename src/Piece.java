@@ -3,12 +3,11 @@
  * This is a abstract class extended by the Knight class
  */
 public abstract class Piece {
-    private ChessGame game = PlayGame.game;
     private String owner;
     private PieceLocation location;
 
     public ChessGame getGame(){
-        return game;
+        return PlayGame.game;
     }
 
     public String getOwner(){
@@ -17,10 +16,6 @@ public abstract class Piece {
 
     public PieceLocation getLocation(){
         return location;
-    }
-
-    public void setGame(ChessGame game){
-        this.game = game;
     }
 
     public void setOwner(String owner){
@@ -36,9 +31,12 @@ public abstract class Piece {
         return  Math.abs(location.getDifference(newLocation).getRow()) == Math.abs(location.getDifference(newLocation).getCol());
     }
 
-    //Checks if a piece is moving in a straight line within a range
+    //Checks if a piece is moving in a straight line within a range and that another piece from your team is not there
     public boolean canMoveDiagonally(PieceLocation location, PieceLocation newLocation, int range){
-        return  Math.abs(location.getDifference(newLocation).getRow()) == Math.abs(location.getDifference(newLocation).getCol()) && Math.abs(location.getDifference(newLocation).getRow()) == range ;
+        if(Math.abs(location.getDifference(newLocation).getRow()) == Math.abs(location.getDifference(newLocation).getCol()) && Math.abs(location.getDifference(newLocation).getRow()) == range){
+            return !PlayGame.game.getChessBoard().getTiles()[newLocation.getRow()][newLocation.getCol()].getPiece().getOwner().equals(owner);
+        }
+        else return false;
     }
 
     //Checks if a piece is moving in a straight line
