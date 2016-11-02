@@ -26,18 +26,22 @@ public abstract class Piece {
         this.location = location;
     }
 
-    //Checks if a piece is moving diagonally
+    //Checks if a piece is moving diagonally and there are no team members along the way
     public boolean canMoveDiagonally(PieceLocation location, PieceLocation newLocation, int range){
         if(Math.abs(location.getDifference(newLocation).getRow()) == Math.abs(location.getDifference(newLocation).getCol()) && Math.abs(location.getDifference(newLocation).getRow()) == range){
             int rowDiffSign = Integer.signum(location.getDifference(newLocation).getRow());
             int colDiffSign = Integer.signum(location.getDifference(newLocation).getCol());
-            for(int row = location.getRow();row!=newLocation.getRow();row+=rowDiffSign){
-                for(int col = location.getCol();col!=newLocation.getCol();row+=colDiffSign){
-                    if(PlayGame.game.getChessBoard().getTiles()[row][col].getPiece() != this &&
-                            PlayGame.game.getChessBoard().getTiles()[row][col].getPiece().getOwner().equals(owner)){
-                        System.out.print("hit team member");
-                        return false;
-                    }
+            int row = location.getRow()+rowDiffSign;
+            int col = location.getCol()+colDiffSign;
+            while(row!=newLocation.getRow()){
+                if(PlayGame.game.getChessBoard().getTiles()[row][col].getPiece() != null &&
+                        PlayGame.game.getChessBoard().getTiles()[row][col].getPiece().getOwner().equals(owner)){
+                    System.out.print("Hit team member!");
+                    return false;
+                }
+                else{
+                    row+=rowDiffSign;
+                    col+=colDiffSign;
                 }
             }
             return true;
