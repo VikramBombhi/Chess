@@ -22,7 +22,10 @@ public class ChessBoard {
 
     //Check if Piece at location is null or not
     public boolean isPieceAt(PieceLocation location){
-        return !(tiles[location.getRow()][location.getCol()].getPiece() == null);
+        if(tiles[location.getRow()][location.getCol()].getPiece() != null) {
+            return true;
+        }
+        else throw new IllegalArgumentException("There is no piece there, the format for selecting a piece is (row, col) ex(0,1)");
     }
 
     //Place piece using setPiece method from the Tile class
@@ -37,9 +40,12 @@ public class ChessBoard {
     3.) set piece at location to null
     */
     public void movePiece(PieceLocation location, PieceLocation newLocation){
-        tiles[newLocation.getRow()][newLocation.getCol()].setPiece(tiles[location.getRow()][location.getCol()].getPiece());
-        tiles[newLocation.getRow()][newLocation.getCol()].getPiece().getLocation().setLocation(newLocation);
-        tiles[location.getRow()][location.getCol()].removePiece();
+        if(PlayGame.game.getChessBoard().getTiles()[location.getRow()][location.getCol()].getPiece().canMoveTo(newLocation)){
+            tiles[newLocation.getRow()][newLocation.getCol()].setPiece(tiles[location.getRow()][location.getCol()].getPiece());
+            tiles[newLocation.getRow()][newLocation.getCol()].getPiece().getLocation().setLocation(newLocation);
+            tiles[location.getRow()][location.getCol()].removePiece();
+        }
+        else throw new IllegalArgumentException("Piece cannot move there");
     }
 
     //This method prints the ChessBoard including the row and col numbers

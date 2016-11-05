@@ -22,7 +22,7 @@ public class Knight extends Piece {
         newRow -= this.getLocation().getRow();
         newCol -= this.getLocation().getCol();
         //returns true if either newRow or newCol changes by two and the other by one(hence moves in a 'L')
-        return(Math.abs(newRow) == 2 && Math.abs(newCol) == 1 || Math.abs(newCol) == 2 && Math.abs(newRow) == 1);
+        return(Math.abs(newRow) == 2 && Math.abs(newCol) == 1 || Math.abs(newCol) == 2 && Math.abs(newRow) == 1 && !PlayGame.game.getChessBoard().getTiles()[newRow][newCol].getPiece().getOwner().equals(this.getOwner()));
     }
 
     @Override
