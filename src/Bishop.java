@@ -14,6 +14,9 @@ public class Bishop extends Piece {
 
     @Override
     public String toString(){
-        return " " + "b";
+        if(this.getOwner().equals("White")){
+            return " " + Character.toLowerCase(this.BishopID);
+        }
+        else return " " + this.BishopID;
     }
 }

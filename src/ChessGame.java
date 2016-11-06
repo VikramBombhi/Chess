@@ -14,40 +14,77 @@ public class ChessGame {
     private void setupBoard(){
         //creating&placing pieces manually for now should find a cleaner way later
 
-        //create&place knights
-        Knight knight = new Knight("Black", new PieceLocation(0, 1));
-        chessBoard.placePieceAt(knight);
-
-        knight = new Knight("Black", new PieceLocation(0, 6));
-        chessBoard.placePieceAt(knight);
+        //Black pieces
+        //create&place king
+        King Bking = new King("Black", new PieceLocation(0, 4));
+        chessBoard.placePieceAt(Bking);
 
         //create&place queen
-        Queen queen = new Queen("Black", new PieceLocation(0, 3));
-        chessBoard.placePieceAt(queen);
-
-        //create&place rooks
-        Rook rook = new Rook("Black", new PieceLocation(0, 0));
-        chessBoard.placePieceAt(rook);
-
-        rook = new Rook("Black", new PieceLocation(0, 7));
-        chessBoard.placePieceAt(rook);
+        Queen Bqueen = new Queen("Black", new PieceLocation(0, 3));
+        chessBoard.placePieceAt(Bqueen);
 
         //create&place bishops
-        Bishop bishop = new Bishop("Black", new PieceLocation(0, 2));
-        chessBoard.placePieceAt(bishop);
+        Bishop Bbishop = new Bishop("Black", new PieceLocation(0, 2));
+        chessBoard.placePieceAt(Bbishop);
 
-        bishop = new Bishop("Black", new PieceLocation(0, 5));
-        chessBoard.placePieceAt(bishop);
+        Bbishop = new Bishop("Black", new PieceLocation(0, 5));
+        chessBoard.placePieceAt(Bbishop);
 
-        //create&place kings
-        King king = new King("Black", new PieceLocation(0, 4));
-        chessBoard.placePieceAt(king);
+        //create&place knights
+        Knight Bknight = new Knight("Black", new PieceLocation(0, 1));
+        chessBoard.placePieceAt(Bknight);
 
-	//create&place pawns
-	for(int col = 0; col < 8; col++){
-		Pawn pawn = new Pawn("Black", new PieceLocation(1, col));
-		chessBoard.placePieceAt(pawn);
-	}
+        Bknight = new Knight("Black", new PieceLocation(0, 6));
+        chessBoard.placePieceAt(Bknight);
+
+        //create&place rooks
+        Rook Brook = new Rook("Black", new PieceLocation(0, 0));
+        chessBoard.placePieceAt(Brook);
+
+        Brook = new Rook("Black", new PieceLocation(0, 7));
+        chessBoard.placePieceAt(Brook);
+
+        //create&place pawns
+        for(int col = 0; col < 8; col++){
+            Pawn Bpawn = new Pawn("Black", new PieceLocation(1, col));
+            chessBoard.placePieceAt(Bpawn);
+        }
+
+        //White pieces
+        //create&place king
+        King Wking = new King("White", new PieceLocation(7, 4));
+        chessBoard.placePieceAt(Wking);
+
+        //create&place queen
+        Queen Wqueen = new Queen("White", new PieceLocation(7, 3));
+        chessBoard.placePieceAt(Wqueen);
+
+        //create&place bishops
+        Bishop Wbishop = new Bishop("White", new PieceLocation(7, 2));
+        chessBoard.placePieceAt(Wbishop);
+
+        Wbishop = new Bishop("White", new PieceLocation(7, 5));
+        chessBoard.placePieceAt(Wbishop);
+
+        //create&place knights
+        Knight Wknight = new Knight("White", new PieceLocation(7, 1));
+        chessBoard.placePieceAt(Wknight);
+
+        Wknight = new Knight("White", new PieceLocation(7, 6));
+        chessBoard.placePieceAt(Wknight);
+
+        //create&place rooks
+        Rook Wrook = new Rook("White", new PieceLocation(7, 0));
+        chessBoard.placePieceAt(Wrook);
+
+        Wrook = new Rook("White", new PieceLocation(7, 7));
+        chessBoard.placePieceAt(Wrook);
+
+        //create&place pawns
+        for(int col = 0; col < 8; col++){
+            Pawn Wpawn = new Pawn("White", new PieceLocation(6, col));
+            chessBoard.placePieceAt(Wpawn);
+        }
     }
 
     //returns the ChessBoard

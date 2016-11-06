@@ -27,6 +27,9 @@ public class Knight extends Piece {
 
     @Override
     public String toString(){
-        return " " + "k";
+        if(this.getOwner().equals("White")){
+            return " " + Character.toLowerCase(this.KnightID);
+        }
+        else return " " + this.KnightID;
     }
 }

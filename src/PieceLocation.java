@@ -27,6 +27,7 @@ public class PieceLocation {
     }
 
     public PieceLocation getDifference(PieceLocation newLocation){
-        return (new PieceLocation(newLocation.getRow()-this.getRow(), newLocation.getCol()-this.getCol()));
+        int teamSign = PlayGame.game.getChessBoard().getTiles()[this.row][this.col].getPiece().getTeamSign();
+        return (new PieceLocation((newLocation.getRow()-this.getRow())*teamSign, (newLocation.getCol()-this.getCol())*teamSign));
     }
 }

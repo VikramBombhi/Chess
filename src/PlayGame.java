@@ -35,13 +35,14 @@ public class PlayGame {
                 //Check if a piece exists at currentLocation
                 game.getChessBoard().isPieceAt(currentLocation);
                 //ask user where to move piece
-                System.out.print("Enter where you want to move ex.(row,col): ");
+                System.out.print("Enter where you want to move ex.(row,col) or quit ex(quit): ");
                 PieceLocation newLocation = parseCoordinates(userInput.nextLine());
                 //move piece
                 game.getChessBoard().movePiece(currentLocation, newLocation);
             }
             catch(Exception error){
                 if(error.getMessage().equals("quit")){
+                    System.out.print("Good game!");
                     break;
                 }
                 else System.out.println("Error Message: "+error.getMessage()+", ErrorCause: "+error.getCause());

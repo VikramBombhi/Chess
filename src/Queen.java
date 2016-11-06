@@ -16,6 +16,9 @@ public class Queen extends Piece {
 
     @Override
     public String toString(){
-        return " " + "q";
+        if(this.getOwner().equals("White")){
+            return " " + Character.toLowerCase(this.QueenID);
+        }
+        else return " " + this.QueenID;
     }
 }

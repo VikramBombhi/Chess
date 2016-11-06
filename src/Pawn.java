@@ -2,6 +2,8 @@
  * Created by Vikram on 2016-10-22.
  */
 public class Pawn extends Piece {
+    private boolean firstmove = true;
+
 
     public Pawn(String owner, PieceLocation location){
         this.setOwner(owner);
@@ -9,11 +11,18 @@ public class Pawn extends Piece {
     }
 
     public boolean canMoveTo(PieceLocation newLocation){
-        return super.canMoveStraight(this.getLocation(), newLocation, 1);
+        if(firstmove){
+            firstmove = false;
+            return super.canMoveStraight(this.getLocation(), newLocation, 2*teamSign) || super.canMoveStraight(this.getLocation(), newLocation, 1*teamSign);
+        }
+        else return super.canMoveStraight(this.getLocation(), newLocation, 1);
     }
 
     @Override
     public String toString(){
-        return " " + "p";
+        if(this.getOwner().equals("White")){
+            return " " + Character.toLowerCase(this.PawnID);
+        }
+        else return " " + this.PawnID;
     }
 }

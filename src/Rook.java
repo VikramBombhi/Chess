@@ -15,6 +15,9 @@ public class Rook extends Piece {
 
     @Override
     public String toString(){
-        return " " + "r";
+        if(this.getOwner().equals("White")){
+            return " " + Character.toLowerCase(this.RookID);
+        }
+        else return " " + this.RookID;
     }
 }

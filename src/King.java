@@ -18,6 +18,9 @@ public class King extends Piece {
 
     @Override
     public String toString(){
-        return " " + "K";
+        if(this.getOwner().equals("White")){
+            return " " + Character.toLowerCase(this.KingID);
+        }
+        else return " " + this.KingID;
     }
 }
