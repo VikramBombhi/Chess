@@ -42,7 +42,7 @@ public class ChessBoard {
     public void movePiece(PieceLocation location, PieceLocation newLocation){
         if(PlayGame.game.getChessBoard().getTiles()[location.getRow()][location.getCol()].getPiece().canMoveTo(newLocation)){
             tiles[newLocation.getRow()][newLocation.getCol()].setPiece(tiles[location.getRow()][location.getCol()].getPiece());
-            tiles[newLocation.getRow()][newLocation.getCol()].getPiece().getLocation().setLocation(newLocation);
+            tiles[newLocation.getRow()][newLocation.getCol()].getPiece().setLocation(newLocation);
             tiles[location.getRow()][location.getCol()].removePiece();
         }
         else throw new IllegalArgumentException("Piece cannot move there");

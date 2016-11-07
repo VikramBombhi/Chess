@@ -9,6 +9,7 @@ public class PlayGame {
     public static ChessGame game;
 
     //This method takes the users input and converts it into a PieceLocation obj
+    //@params: input is the string to be converted into PieceLocation obj
     private static PieceLocation parseCoordinates(String input){
         if(input.equalsIgnoreCase("quit")){
             throw new IllegalArgumentException("quit");
@@ -17,6 +18,9 @@ public class PlayGame {
         String[] locationSplit = input.split(",");
         int row = Integer.parseInt(locationSplit[0].trim());
         int col = Integer.parseInt(locationSplit[1].trim());
+        if(row > 7 || col > 7){
+            throw new IllegalArgumentException("Out of range");
+        }
         return new PieceLocation(row, col);
     }
 
