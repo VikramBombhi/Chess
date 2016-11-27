@@ -6,9 +6,11 @@ public class Pawn extends Piece {
     private boolean firstmove = true;
 
 
-    public Pawn(String owner, PieceLocation location){
+    public Pawn(String owner, PieceLocation location, ChessGame game){
         this.setOwner(owner);
         this.setLocation(location);
+        this.game = game;
+        this.game.getChessBoard().placePieceAt(this);
     }
 
     public boolean canMoveTo(PieceLocation newLocation){

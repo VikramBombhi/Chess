@@ -22,10 +22,7 @@ public class ChessBoard {
 
     //Check if Piece at location is null or not
     public boolean isPieceAt(PieceLocation location){
-        if(tiles[location.getRow()][location.getCol()].getPiece() != null) {
-            return true;
-        }
-        else throw new IllegalArgumentException("There is no piece there, the format for selecting a piece is (row, col) ex(0,1)");
+        return (tiles[location.getRow()][location.getCol()].getPiece() != null);
     }
 
     //Place piece using setPiece method from the Tile class

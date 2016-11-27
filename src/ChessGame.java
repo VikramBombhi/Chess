@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Created by Vikram on 2016-09-29.
  * ChessGame class creates the chessboard and sets up the board
@@ -14,76 +16,38 @@ public class ChessGame {
     private void setupBoard(){
         //creating&placing pieces manually for now should find a cleaner way later
 
-        //Black pieces
-        //create&place king
-        King Bking = new King("Black", new PieceLocation(0, 4));
-        chessBoard.placePieceAt(Bking);
+        //Kings
+        King Bking = new King("Black", new PieceLocation(0, 4), this);
+        King Wking = new King("White", new PieceLocation(7, 4), this);
 
-        //create&place queen
-        Queen Bqueen = new Queen("Black", new PieceLocation(0, 3));
-        chessBoard.placePieceAt(Bqueen);
+        //Queens
+        Queen Bqueen = new Queen("Black", new PieceLocation(0, 3), this);
+        Queen Wqueen = new Queen("White", new PieceLocation(7, 3), this);
 
-        //create&place bishops
-        Bishop Bbishop = new Bishop("Black", new PieceLocation(0, 2));
-        chessBoard.placePieceAt(Bbishop);
+        //Bishops
+        Bishop Bbishop = new Bishop("Black", new PieceLocation(0, 2), this);
+        Bbishop = new Bishop("Black", new PieceLocation(0, 5), this);
+        Bishop Wbishop = new Bishop("White", new PieceLocation(7, 2), this);
+        Wbishop = new Bishop("White", new PieceLocation(7, 5), this);
 
-        Bbishop = new Bishop("Black", new PieceLocation(0, 5));
-        chessBoard.placePieceAt(Bbishop);
+        //Knights
+        Knight Bknight = new Knight("Black", new PieceLocation(0, 1), this);
+        Bknight = new Knight("Black", new PieceLocation(0, 6), this);
+        Knight Wknight = new Knight("White", new PieceLocation(7, 1), this);
+        Wknight = new Knight("White", new PieceLocation(7, 6), this);
 
-        //create&place knights
-        Knight Bknight = new Knight("Black", new PieceLocation(0, 1));
-        chessBoard.placePieceAt(Bknight);
+        //Rooks
+        Rook Brook = new Rook("Black", new PieceLocation(0, 0), this);
+        Brook = new Rook("Black", new PieceLocation(0, 7), this);
+        Rook Wrook = new Rook("White", new PieceLocation(7, 0), this);
+        Wrook = new Rook("White", new PieceLocation(7, 7), this);
 
-        Bknight = new Knight("Black", new PieceLocation(0, 6));
-        chessBoard.placePieceAt(Bknight);
-
-        //create&place rooks
-        Rook Brook = new Rook("Black", new PieceLocation(0, 0));
-        chessBoard.placePieceAt(Brook);
-
-        Brook = new Rook("Black", new PieceLocation(0, 7));
-        chessBoard.placePieceAt(Brook);
-
-        //create&place pawns
+        //Pawns
         for(int col = 0; col < 8; col++){
-            Pawn Bpawn = new Pawn("Black", new PieceLocation(1, col));
-            chessBoard.placePieceAt(Bpawn);
+            Pawn Bpawn = new Pawn("Black", new PieceLocation(1, col), this);
         }
-
-        //White pieces
-        //create&place king
-        King Wking = new King("White", new PieceLocation(7, 4));
-        chessBoard.placePieceAt(Wking);
-
-        //create&place queen
-        Queen Wqueen = new Queen("White", new PieceLocation(7, 3));
-        chessBoard.placePieceAt(Wqueen);
-
-        //create&place bishops
-        Bishop Wbishop = new Bishop("White", new PieceLocation(7, 2));
-        chessBoard.placePieceAt(Wbishop);
-
-        Wbishop = new Bishop("White", new PieceLocation(7, 5));
-        chessBoard.placePieceAt(Wbishop);
-
-        //create&place knights
-        Knight Wknight = new Knight("White", new PieceLocation(7, 1));
-        chessBoard.placePieceAt(Wknight);
-
-        Wknight = new Knight("White", new PieceLocation(7, 6));
-        chessBoard.placePieceAt(Wknight);
-
-        //create&place rooks
-        Rook Wrook = new Rook("White", new PieceLocation(7, 0));
-        chessBoard.placePieceAt(Wrook);
-
-        Wrook = new Rook("White", new PieceLocation(7, 7));
-        chessBoard.placePieceAt(Wrook);
-
-        //create&place pawns
         for(int col = 0; col < 8; col++){
-            Pawn Wpawn = new Pawn("White", new PieceLocation(6, col));
-            chessBoard.placePieceAt(Wpawn);
+            Pawn Wpawn = new Pawn("White", new PieceLocation(6, col), this);
         }
     }
 

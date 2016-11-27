@@ -5,9 +5,11 @@
 
 public class Knight extends Piece {
 
-    public Knight(String owner, PieceLocation location){
+    public Knight(String owner, PieceLocation location, ChessGame game){
         this.setOwner(owner);
         this.setLocation(location);
+        this.game = game;
+        this.game.getChessBoard().placePieceAt(this);
     }
 
     //checks if knight can move to newLocation

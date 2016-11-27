@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.StringJoiner;
 
@@ -9,6 +10,8 @@ import java.util.StringJoiner;
 public abstract class Piece {
     private String owner;
     private PieceLocation location;
+    protected ChessGame game;
+    private ArrayList threating;
     //teamSign is a easy way to use methods for both teams, it works by essentially flipping the board when it comes to calculations
     protected int teamSign = 1;
     protected char KingID = 'K';
@@ -65,17 +68,19 @@ public abstract class Piece {
                 && checkPath(newLocation);
     }
 
+
     //checks the path between the piece location and newLocation for and team members
     private boolean checkPath(PieceLocation newLocation){
         int rowDiffSign = Integer.signum(location.getDifference(newLocation).getRow()); //is the direction of movement(row)
         int colDiffSign = Integer.signum(location.getDifference(newLocation).getCol()); //is the direction of movement(col)
-        int row = location.getRow()+rowDiffSign; //start checking for collisions one square forward in direction of movement
-        int col = location.getCol()+colDiffSign; //start checking for collisions one square forward in direction of movement
-        while(row!=newLocation.getRow()+rowDiffSign || col!=newLocation.getCol()+colDiffSign){
-            if(PlayGame.game.getChessBoard().getTiles()[row][col].getPiece() != null &&
-                    PlayGame.game.getChessBoard().getTiles()[row][col].getPiece().getOwner().equals(owner)){
-                System.out.print("Hit team member! ");
-                return false;
+        int row = location.getRow()+ rowDiffSign; //start checking for collisions one square forward in direction of movement
+        int col = location.getCol() + colDiffSign; //start checking for collisions one square forward in direction of movement
+        while(row!=newLocation.getRow() + rowDiffSign || col!=newLocation.getCol() + colDiffSign){
+            if(game.getChessBoard().isPieceAt(new PieceLocation(row, col))){
+                if(game.getChessBoard().getTiles()[row][col].getPiece().getOwner().equals(owner)) {
+                    System.out.print("Hit team member! ");
+                    return false;
+                }
             }
             else{
                 row+=rowDiffSign;

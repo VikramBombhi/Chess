@@ -7,6 +7,14 @@ import java.util.Scanner;
 public class PlayGame {
     private static Scanner userInput = new Scanner(System.in);
     public static ChessGame game;
+    private static String whosTurn = "White";
+
+    private static void nextTurn(){
+        if(whosTurn.equals("Black")){
+            whosTurn = "White";
+        }
+        else whosTurn = "Black";
+    }
 
     //This method takes the users input and converts it into a PieceLocation obj
     //@params: input is the string to be converted into PieceLocation obj
@@ -37,12 +45,18 @@ public class PlayGame {
                 //@param currentLocation is the location of the piece that the user wants to move
                 PieceLocation currentLocation = parseCoordinates(userInput.nextLine());
                 //Check if a piece exists at currentLocation
-                game.getChessBoard().isPieceAt(currentLocation);
+                if(!game.getChessBoard().isPieceAt(currentLocation)) {
+                    throw new IllegalArgumentException("There is no piece there, the format for selecting a piece is (row, col) ex(0,1)");
+                }
+                if(!game.getChessBoard().getTiles()[currentLocation.getRow()][currentLocation.getCol()].getPiece().getOwner().equals(whosTurn)){
+                    throw new IllegalAccessException("Please select a piece on your team");
+                }
                 //ask user where to move piece
                 System.out.print("Enter where you want to move ex.(row,col) or quit ex(quit): ");
                 PieceLocation newLocation = parseCoordinates(userInput.nextLine());
                 //move piece
                 game.getChessBoard().movePiece(currentLocation, newLocation);
+                nextTurn();
             }
             catch(Exception error){
                 if(error.getMessage().equals("quit")){

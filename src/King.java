@@ -4,9 +4,11 @@
  */
 public class King extends Piece {
 
-    public King(String owner, PieceLocation location){
+    public King(String owner, PieceLocation location, ChessGame game){
         this.setOwner(owner);
         this.setLocation(location);
+        this.game = game;
+        this.game.getChessBoard().placePieceAt(this);
     }
 
     public boolean canMoveTo(PieceLocation newLocation){
