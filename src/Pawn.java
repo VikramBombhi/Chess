@@ -1,5 +1,3 @@
-import java.util.HashSet;
-
 public class Pawn extends Piece {
     //the pawn can move forward two tiles on the first move
     private boolean firstmove = true;

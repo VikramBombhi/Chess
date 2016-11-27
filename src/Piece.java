@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.HashSet;
-
 /**
  * Created by Vikram on 2016-09-28.
  * This is a abstract class extended by the Knight class

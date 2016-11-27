@@ -1,5 +1,3 @@
-import java.util.HashSet;
-
 /**
  * Created by Vikram on 2016-10-19.
  * This class is a template for the queen object
