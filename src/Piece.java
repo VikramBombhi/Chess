@@ -63,7 +63,7 @@ public abstract class Piece {
                 && checkPath(newLocation);
     }
 
-    public void threating(){
+    public void threatening(){
         for(Object obj : game.getEnemyTeam(this.owner)){
             Piece enemy = (Piece) obj;
             if(enemy.toString().toLowerCase().equals(" k")){
@@ -116,7 +116,7 @@ public abstract class Piece {
             if(game.getChessBoard().isPieceAt(newLocation)){
                 game.getEnemyTeam(this.owner).remove(game.getChessBoard().getTiles()[newLocation.getRow()][newLocation.getCol()].getPiece());
             }
-            threating();
+            threatening();
 
         }
         else throw new IllegalArgumentException("Piece cannot move there");

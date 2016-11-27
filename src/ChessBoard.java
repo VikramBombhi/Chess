@@ -30,21 +30,6 @@ public class ChessBoard {
         tiles[piece.getLocation().getRow()][piece.getLocation().getCol()].setPiece(piece);
     }
 
-    /*
-    Move piece from location to newLocation in three steps
-    1.) get piece from location and set it at newLocation
-    2.) set the PieceLocation obj that exist inside the piece to newLocation
-    3.) set piece at location to null
-    */
-    public void movePiece(PieceLocation location, PieceLocation newLocation){
-        if(PlayGame.game.getChessBoard().getTiles()[location.getRow()][location.getCol()].getPiece().canMoveTo(newLocation)){
-            tiles[newLocation.getRow()][newLocation.getCol()].setPiece(tiles[location.getRow()][location.getCol()].getPiece());
-            tiles[newLocation.getRow()][newLocation.getCol()].getPiece().setLocation(newLocation);
-            tiles[location.getRow()][location.getCol()].removePiece();
-        }
-        else throw new IllegalArgumentException("Piece cannot move there");
-    }
-
     //This method prints the ChessBoard including the row and col numbers
     public void printBoard(){
         System.out.println("  0 1 2 3 4 5 6 7");

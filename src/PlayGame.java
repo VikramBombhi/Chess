@@ -19,9 +19,6 @@ public class PlayGame {
     //This method takes the users input and converts it into a PieceLocation obj
     //@params: input is the string to be converted into PieceLocation obj
     private static PieceLocation parseCoordinates(String input){
-        if(input.equalsIgnoreCase("quit")){
-            throw new IllegalArgumentException("quit");
-        }
         //split coordinates by comma and remove any spaces
         String[] locationSplit = input.split(",");
         int row = Integer.parseInt(locationSplit[0].trim());
@@ -39,29 +36,47 @@ public class PlayGame {
             try{
                 game.getChessBoard().printBoard();
                 System.out.print("\n");
+                System.out.println("i.) move");
+                System.out.println("ii.) restart");
+                System.out.println("iii.) quit");
+                System.out.print("Select what you would like to do: ");
+                String input = userInput.nextLine();
 
-                //ask user for piece to move
-                System.out.print("Select piece to move ex(row,col) or quit ex(quit): ");
-                //@param currentLocation is the location of the piece that the user wants to move
-                PieceLocation currentLocation = parseCoordinates(userInput.nextLine());
-                //Check if a piece exists at currentLocation
-                if(!game.getChessBoard().isPieceAt(currentLocation)) {
-                    throw new IllegalArgumentException("There is no piece there, the format for selecting a piece is (row, col) ex(0,1)");
+                if(input.equalsIgnoreCase("move")){
+                    //ask user for piece to move
+                    System.out.print("Select piece to move ex(row,col): ");
+                    //@param currentLocation is the location of the piece that the user wants to move
+                    PieceLocation currentLocation = parseCoordinates(userInput.nextLine());
+                    //Check if a piece exists at currentLocation
+                    if(!game.getChessBoard().isPieceAt(currentLocation)) {
+                        throw new IllegalArgumentException("There is no piece there, the format for selecting a piece is (row, col) ex(0,1)");
+                    }
+                    if(!game.getChessBoard().getTiles()[currentLocation.getRow()][currentLocation.getCol()].getPiece().getOwner().equals(whosTurn)){
+                        throw new IllegalArgumentException("Please select a piece on your team");
+                    }
+                    //ask user where to move piece
+                    System.out.print("Enter where you want to move ex.(row,col): ");
+                    PieceLocation newLocation = parseCoordinates(userInput.nextLine());
+                    //move piece
+                    game.getChessBoard().getTiles()[currentLocation.getRow()][currentLocation.getCol()].getPiece().moveTo(newLocation);
+                    nextTurn();
                 }
-                if(!game.getChessBoard().getTiles()[currentLocation.getRow()][currentLocation.getCol()].getPiece().getOwner().equals(whosTurn)){
-                    throw new IllegalAccessException("Please select a piece on your team");
+                if (input.equalsIgnoreCase("restart")){
+                    throw new IllegalAccessException("restart");
                 }
-                //ask user where to move piece
-                System.out.print("Enter where you want to move ex.(row,col) or quit ex(quit): ");
-                PieceLocation newLocation = parseCoordinates(userInput.nextLine());
-                //move piece
-                game.getChessBoard().getTiles()[currentLocation.getRow()][currentLocation.getCol()].getPiece().moveTo(newLocation);
-                nextTurn();
+                if(input.equalsIgnoreCase("quit")){
+                    throw new IllegalAccessException("quit");
+                }
+                else throw new IllegalAccessException("that is not a valid command, please select move, restart, or quit");
             }
             catch(Exception error){
                 if(error.getMessage().equals("quit")){
-                    System.out.print("Good game!");
+                    System.out.println("Good game!");
                     break;
+                }
+                if(error.getMessage().equals("restart")){
+                    System.out.println("Another one");
+                    game = new ChessGame();
                 }
                 else System.out.println("Error Message: "+error.getMessage()+", ErrorCause: "+error.getCause());
             }

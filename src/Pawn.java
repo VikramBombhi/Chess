@@ -10,12 +10,29 @@ public class Pawn extends Piece {
         this.game.getChessBoard().placePieceAt(this);
     }
 
+    //Checks if move will kill enemy team
+    private boolean pawnAttack(PieceLocation newLocation){
+        if(this.getLocation().getDifference(newLocation).getRow() == teamSign) {
+            if (game.getChessBoard().isPieceAt(new PieceLocation(newLocation.getRow(), newLocation.getCol())) &&
+                    !game.getChessBoard().getTiles()[newLocation.getRow()][newLocation.getCol()].getPiece().getOwner().equals(this.getOwner())) {
+                return (super.canMoveDiagonally(this.getLocation(), newLocation, 1) ||
+                        super.canMoveDiagonally(this.getLocation(), newLocation, -1));
+            }
+        }
+        return false;
+    }
+
     public boolean canMoveTo(PieceLocation newLocation){
         if(firstmove){
-            firstmove = false;
-            return (super.canMoveStraight(this.getLocation(), newLocation, 2*teamSign) || super.canMoveStraight(this.getLocation(), newLocation, 1*teamSign));
+            if(super.canMoveStraight(this.getLocation(), newLocation, 2*teamSign) ||
+                    super.canMoveStraight(this.getLocation(), newLocation, 1*teamSign) ||
+                    pawnAttack(newLocation)){
+                firstmove = false;
+                return true;
+            }
         }
-        else return super.canMoveStraight(this.getLocation(), newLocation, 1);
+        return (super.canMoveStraight(this.getLocation(), newLocation, 1) ||
+                pawnAttack(newLocation));
     }
 
     @Override
