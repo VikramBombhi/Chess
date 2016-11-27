@@ -1,3 +1,5 @@
+import java.util.HashSet;
+
 /**
  * Created by Vikram on 2016-09-28.
  * This class extends the piece class and implements the knight piece

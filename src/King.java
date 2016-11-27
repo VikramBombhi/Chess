@@ -1,3 +1,5 @@
+import java.util.HashSet;
+
 /**
  * Created by Vikram on 2016-10-22.
  * This class is a template for the king object

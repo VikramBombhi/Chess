@@ -30,4 +30,9 @@ public class PieceLocation {
         int teamSign = PlayGame.game.getChessBoard().getTiles()[this.row][this.col].getPiece().getTeamSign();
         return (new PieceLocation((newLocation.getRow()-this.getRow())*teamSign, (newLocation.getCol()-this.getCol())*teamSign));
     }
+
+    public PieceLocation makeDifference(int rowDiff, int colDiff){
+        int teamSign = PlayGame.game.getChessBoard().getTiles()[this.row][this.col].getPiece().getTeamSign();
+        return (new PieceLocation((rowDiff/teamSign)+this.getRow(), (colDiff/teamSign)+this.getCol()));
+    }
 }

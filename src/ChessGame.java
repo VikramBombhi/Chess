@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * Created by Vikram on 2016-09-29.
@@ -6,48 +7,65 @@ import java.util.ArrayList;
  */
 public class ChessGame {
     private ChessBoard chessBoard;
+    private ArrayList<Piece> teamBlack;
+    private ArrayList<Piece> teamWhite;
 
     public ChessGame(){
         chessBoard = new ChessBoard();
-        setupBoard();
+        teamBlack = new ArrayList<>();
+        teamWhite = new ArrayList<>();
+        placeTeam("Black", 0);
+        placeTeam("White", 7);
     }
 
     //Place pieces on the board at the start of a  new ChessGame
-    private void setupBoard(){
-        //creating&placing pieces manually for now should find a cleaner way later
+    private void placeTeam(String team, int backRow){
+        int col = 0;
+        ArrayList teamArr;
+        int pawnRow;
+        if(team.equals("Black")){
+            pawnRow = 1;
+            teamArr = teamBlack;
+        }
+        else {
+            pawnRow = 6;
+            teamArr = teamWhite;
+        }
 
-        //Kings
-        King Bking = new King("Black", new PieceLocation(0, 4), this);
-        King Wking = new King("White", new PieceLocation(7, 4), this);
+        //Rook
+        Piece rook = new Rook(team, new PieceLocation(backRow, col), this);
+        teamArr.add(rook);
+        rook = new Rook(team, new PieceLocation(backRow, 7-col), this);
+        teamArr.add(rook);
+        col += 1;
 
-        //Queens
-        Queen Bqueen = new Queen("Black", new PieceLocation(0, 3), this);
-        Queen Wqueen = new Queen("White", new PieceLocation(7, 3), this);
+        //Knight
+        Piece knight = new Knight(team, new PieceLocation(backRow, col), this);
+        teamArr.add(knight);
+        knight = new Knight(team, new PieceLocation(backRow, 7-col), this);
+        teamArr.add(knight);
+        col += 1;
 
-        //Bishops
-        Bishop Bbishop = new Bishop("Black", new PieceLocation(0, 2), this);
-        Bbishop = new Bishop("Black", new PieceLocation(0, 5), this);
-        Bishop Wbishop = new Bishop("White", new PieceLocation(7, 2), this);
-        Wbishop = new Bishop("White", new PieceLocation(7, 5), this);
+        //Bishop
+        Piece bishop = new Bishop(team, new PieceLocation(backRow, col), this);
+        teamArr.add(bishop);
+        bishop = new Bishop(team, new PieceLocation(backRow, 7-col), this);
+        teamArr.add(bishop);
+        col += 1;
 
-        //Knights
-        Knight Bknight = new Knight("Black", new PieceLocation(0, 1), this);
-        Bknight = new Knight("Black", new PieceLocation(0, 6), this);
-        Knight Wknight = new Knight("White", new PieceLocation(7, 1), this);
-        Wknight = new Knight("White", new PieceLocation(7, 6), this);
+        //Queen
+        Piece queen = new Queen(team, new PieceLocation(backRow, col), this);
+        teamArr.add(queen);
+        col += 1;
 
-        //Rooks
-        Rook Brook = new Rook("Black", new PieceLocation(0, 0), this);
-        Brook = new Rook("Black", new PieceLocation(0, 7), this);
-        Rook Wrook = new Rook("White", new PieceLocation(7, 0), this);
-        Wrook = new Rook("White", new PieceLocation(7, 7), this);
+        //King
+        Piece king = new King(team, new PieceLocation(backRow, col), this);
+        teamArr.add(king);
 
         //Pawns
-        for(int col = 0; col < 8; col++){
-            Pawn Bpawn = new Pawn("Black", new PieceLocation(1, col), this);
-        }
-        for(int col = 0; col < 8; col++){
-            Pawn Wpawn = new Pawn("White", new PieceLocation(6, col), this);
+        for(int pawnCol = 0; pawnCol < 8; pawnCol++){
+            Piece pawn = new Pawn(team, new PieceLocation(pawnRow, pawnCol), this);
+            teamArr.add(pawn);
         }
     }
 
@@ -55,4 +73,19 @@ public class ChessGame {
     public ChessBoard getChessBoard(){
         return chessBoard;
     }
+
+    public ArrayList getEnemyTeam(String team){
+        if(team.equals("Black")){
+            return teamWhite;
+        }
+        else return teamBlack;
+    }
+
+    public ArrayList getYourTeam(String team){
+        if(team.equals("White")){
+            return teamWhite;
+        }
+        else return teamBlack;
+    }
+
 }

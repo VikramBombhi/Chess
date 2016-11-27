@@ -1,6 +1,5 @@
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.StringJoiner;
+import java.util.HashSet;
 
 /**
  * Created by Vikram on 2016-09-28.
@@ -11,7 +10,6 @@ public abstract class Piece {
     private String owner;
     private PieceLocation location;
     protected ChessGame game;
-    private ArrayList threating;
     //teamSign is a easy way to use methods for both teams, it works by essentially flipping the board when it comes to calculations
     protected int teamSign = 1;
     protected char KingID = 'K';
@@ -68,6 +66,24 @@ public abstract class Piece {
                 && checkPath(newLocation);
     }
 
+    public void threating(){
+        for(Object obj : game.getEnemyTeam(this.owner)){
+            Piece enemy = (Piece) obj;
+            if(enemy.toString().toLowerCase().equals(" k")){
+                if(this.canMoveTo(enemy.getLocation())) {
+                    System.out.println("Team " + enemy.getOwner() + "'s king is under check");
+                }
+            }
+        }
+        for(Object obj : game.getYourTeam(this.owner)){
+            Piece enemy = (Piece) obj;
+            if(enemy.toString().toLowerCase().equals(" k")){
+                if(this.canMoveTo(enemy.getLocation())) {
+                    System.out.println("Team " + enemy.getOwner() + "'s king is under check");
+                }
+            }
+        }
+    }
 
     //checks the path between the piece location and newLocation for and team members
     private boolean checkPath(PieceLocation newLocation){
@@ -76,11 +92,10 @@ public abstract class Piece {
         int row = location.getRow()+ rowDiffSign; //start checking for collisions one square forward in direction of movement
         int col = location.getCol() + colDiffSign; //start checking for collisions one square forward in direction of movement
         while(row!=newLocation.getRow() + rowDiffSign || col!=newLocation.getCol() + colDiffSign){
-            if(game.getChessBoard().isPieceAt(new PieceLocation(row, col))){
-                if(game.getChessBoard().getTiles()[row][col].getPiece().getOwner().equals(owner)) {
-                    System.out.print("Hit team member! ");
-                    return false;
-                }
+            if(game.getChessBoard().isPieceAt(new PieceLocation(row, col)) &&
+                    game.getChessBoard().getTiles()[row][col].getPiece().getOwner().equals(owner)){
+                System.out.print("Hit team member! ");
+                return false;
             }
             else{
                 row+=rowDiffSign;
@@ -88,5 +103,25 @@ public abstract class Piece {
             }
         }
         return true;
+    }
+
+    /*
+    Move piece from location to newLocation in three steps
+    1.) get piece from location and set it at newLocation
+    2.) set the PieceLocation obj that exist inside the piece to newLocation
+    3.) set piece at location to null
+    */
+    public void moveTo(PieceLocation newLocation){
+        if(this.canMoveTo(newLocation)){
+            game.getChessBoard().getTiles()[newLocation.getRow()][newLocation.getCol()].setPiece(this);
+            game.getChessBoard().getTiles()[location.getRow()][location.getCol()].removePiece();
+            this.setLocation(newLocation);
+            if(game.getChessBoard().isPieceAt(newLocation)){
+                game.getEnemyTeam(this.owner).remove(game.getChessBoard().getTiles()[newLocation.getRow()][newLocation.getCol()].getPiece());
+            }
+            threating();
+
+        }
+        else throw new IllegalArgumentException("Piece cannot move there");
     }
 }

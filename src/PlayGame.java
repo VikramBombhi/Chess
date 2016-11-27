@@ -55,7 +55,7 @@ public class PlayGame {
                 System.out.print("Enter where you want to move ex.(row,col) or quit ex(quit): ");
                 PieceLocation newLocation = parseCoordinates(userInput.nextLine());
                 //move piece
-                game.getChessBoard().movePiece(currentLocation, newLocation);
+                game.getChessBoard().getTiles()[currentLocation.getRow()][currentLocation.getCol()].getPiece().moveTo(newLocation);
                 nextTurn();
             }
             catch(Exception error){
