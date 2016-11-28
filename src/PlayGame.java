@@ -1,8 +1,9 @@
+import java.util.HashSet;
+import java.util.Scanner;
 /*
  * Created by Vikram on 2016-09-29.
  * The PlayGame class implements the main method.
  */
-import java.util.Scanner;
 
 public class PlayGame {
     private static Scanner userInput = new Scanner(System.in);
@@ -27,6 +28,17 @@ public class PlayGame {
             throw new IllegalArgumentException("Out of range");
         }
         return new PieceLocation(row, col);
+    }
+
+    private static void kingExists(String team){
+        HashSet teamArr = game.getYourTeam(team);
+        for(Object obj : teamArr){
+            Piece piece = (Piece) obj;
+            if(piece.toString().equalsIgnoreCase(" k")){
+                return;
+            }
+        }
+        throw new IllegalArgumentException("quit");
     }
 
     public static void main(String args[]){
@@ -59,15 +71,18 @@ public class PlayGame {
                     PieceLocation newLocation = parseCoordinates(userInput.nextLine());
                     //move piece
                     game.getChessBoard().getTiles()[currentLocation.getRow()][currentLocation.getCol()].getPiece().moveTo(newLocation);
+
+                    kingExists("White");
+                    kingExists("Black");
                     nextTurn();
                 }
                 if (input.equalsIgnoreCase("restart")){
-                    throw new IllegalAccessException("restart");
+                    throw new IllegalArgumentException("restart");
                 }
                 if(input.equalsIgnoreCase("quit")){
-                    throw new IllegalAccessException("quit");
+                    throw new IllegalArgumentException("quit");
                 }
-                else throw new IllegalAccessException("that is not a valid command, please select move, restart, or quit");
+                else throw new IllegalAccessException("that is not a valid command, please enter (move), (restart), or (quit)");
             }
             catch(Exception error){
                 if(error.getMessage().equals("quit")){

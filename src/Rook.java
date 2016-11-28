@@ -15,9 +15,6 @@ public class Rook extends Piece {
         return super.canMoveStraight(this.getLocation(), newLocation);
     }
 
-    public void updateThreating(){
-
-    }
 
     @Override
     public String toString(){

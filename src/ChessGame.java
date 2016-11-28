@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
@@ -7,21 +6,21 @@ import java.util.HashSet;
  */
 public class ChessGame {
     private ChessBoard chessBoard;
-    private ArrayList<Piece> teamBlack;
-    private ArrayList<Piece> teamWhite;
+    private HashSet<Piece> teamBlack;
+    private HashSet<Piece> teamWhite;
 
     public ChessGame(){
         chessBoard = new ChessBoard();
-        teamBlack = new ArrayList<>();
-        teamWhite = new ArrayList<>();
+        teamBlack = new HashSet<>();
+        teamWhite = new HashSet<>();
         placeTeam("Black", 0);
         placeTeam("White", 7);
     }
 
-    //Place pieces on the board at the start of a  new ChessGame
+    //Place pieces on the board for team @param:team
     private void placeTeam(String team, int backRow){
         int col = 0;
-        ArrayList teamArr;
+        HashSet teamArr;
         int pawnRow;
         if(team.equals("Black")){
             pawnRow = 1;
@@ -63,7 +62,7 @@ public class ChessGame {
         teamArr.add(king);
 
         //Pawns
-        for(int pawnCol = 0; pawnCol < 8; pawnCol++){
+        for(int pawnCol = 0; pawnCol < 8; pawnCol++) {
             Piece pawn = new Pawn(team, new PieceLocation(pawnRow, pawnCol), this);
             teamArr.add(pawn);
         }
@@ -74,14 +73,14 @@ public class ChessGame {
         return chessBoard;
     }
 
-    public ArrayList getEnemyTeam(String team){
+    public HashSet getEnemyTeam(String team){
         if(team.equals("Black")){
             return teamWhite;
         }
         else return teamBlack;
     }
 
-    public ArrayList getYourTeam(String team){
+    public HashSet getYourTeam(String team){
         if(team.equals("White")){
             return teamWhite;
         }

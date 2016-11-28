@@ -31,8 +31,15 @@ public class PieceLocation {
         return (new PieceLocation((newLocation.getRow()-this.getRow())*teamSign, (newLocation.getCol()-this.getCol())*teamSign));
     }
 
-    public PieceLocation makeDifference(int rowDiff, int colDiff){
-        int teamSign = PlayGame.game.getChessBoard().getTiles()[this.row][this.col].getPiece().getTeamSign();
-        return (new PieceLocation((rowDiff/teamSign)+this.getRow(), (colDiff/teamSign)+this.getCol()));
+    @Override
+    public boolean equals(Object obj){
+        if (obj == null) {
+            return false;
+        }
+        if (!PieceLocation.class.isAssignableFrom(obj.getClass())) {
+            return false;
+        }
+        PieceLocation pieceLocation = (PieceLocation) obj;
+        return (pieceLocation.getRow() == this.row && pieceLocation.getCol() == this.col);
     }
 }
