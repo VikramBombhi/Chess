@@ -10,29 +10,30 @@ public class Pawn extends Piece {
         this.game.getChessBoard().placePieceAt(this);
     }
 
-    //Checks if move will kill enemy team
+    //Returns if move will kill enemy team member
     private boolean pawnAttack(PieceLocation newLocation){
         if(this.getLocation().getDifference(newLocation).getRow() == teamSign) {
-            if (game.getChessBoard().isPieceAt(new PieceLocation(newLocation.getRow(), newLocation.getCol())) &&
-                    !game.getChessBoard().getTiles()[newLocation.getRow()][newLocation.getCol()].getPiece().getOwner().equals(this.getOwner())) {
                 return (super.canMoveDiagonally(this.getLocation(), newLocation, 1) ||
                         super.canMoveDiagonally(this.getLocation(), newLocation, -1));
-            }
         }
         return false;
     }
 
     public boolean canMoveTo(PieceLocation newLocation){
+        //if there is piece at newLocation and its a enemy team member return pawnAttack
+        if(game.getChessBoard().isPieceAt(new PieceLocation(newLocation.getRow(), newLocation.getCol())) &&
+                !game.getChessBoard().getTiles()[newLocation.getRow()][newLocation.getCol()].getPiece().getOwner().equals(this.getOwner())){
+            firstmove = false;
+            return pawnAttack(newLocation);
+        }
         if(firstmove){
             if(super.canMoveStraight(this.getLocation(), newLocation, 2*teamSign) ||
-                    super.canMoveStraight(this.getLocation(), newLocation, 1*teamSign) ||
-                    pawnAttack(newLocation)){
+                    super.canMoveStraight(this.getLocation(), newLocation, 1*teamSign)){
                 firstmove = false;
                 return true;
             }
         }
-        return (super.canMoveStraight(this.getLocation(), newLocation, 1) ||
-                pawnAttack(newLocation));
+        return (super.canMoveStraight(this.getLocation(), newLocation, 1));
     }
 
     @Override
